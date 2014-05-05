@@ -109,7 +109,9 @@ class RestInPlaceEditor
       @placeholder   = @placeholder   || $(parent).attr("data-placeholder")
 
     @$element.parents().each (index, parent) =>
-      @objectName = @objectName || res[1] if res = parent.id.match(/^(\w+)_(\d+)$/i)
+      if res = parent.id.match(/^(\w+)_(\d+)$/i)
+        @objectName = @objectName || res[1]
+        false
 
     @url           = @$element.attr("data-url")         || @url         || document.location.pathname
     @formType      = @$element.attr("data-formtype")    || @formType    || "input"
